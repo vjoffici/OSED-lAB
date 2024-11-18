@@ -1,0 +1,20 @@
+org 00h
+	start:mov r1,#10
+	mov dptr,#400h
+	back:clr a
+	movc a,@a+dptr
+	mov p2,a
+	acall delay
+	inc dptr
+	djnz r1,back
+	sjmp start
+	org 400h
+		db 3fh,06h,5bh,4fh,66h,6dh,7dh,07h,7fh,6fh
+			delay:mov r2,#08h
+			up2:mov r4,#0ffh
+			up1:mov r3,#0ffh
+			here:djnz r3,here
+			djnz r4,up1
+			djnz r2,up2
+			ret 
+			end
